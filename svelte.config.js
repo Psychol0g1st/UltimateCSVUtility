@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 		paths: {
-			base: '/build'
+			base: '/UltimateCSVUtility/build'
 		},
 		adapter: adapter({
 			fallback: 'index.html'
