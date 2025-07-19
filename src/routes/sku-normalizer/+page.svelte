@@ -14,17 +14,17 @@
 
   onMount(() => {
     resetStore();
-    // Optionally: console.log('Data store reset on mount');
-    // Optionally: console.log('Initial state:', $dataStore);
+    // Opcionális: console.log('Adattároló visszaállítva');
+    // Opcionális: console.log('Kezdeti állapot:', $dataStore);
   });
 
   function executeNormalization() {
     if (!selectedSkuColumn || !selectedBackupColumn) {
-      alert('Please select both SKU column and backup column');
+      alert('Kérjük válassza ki mind a cikkszám oszlopot, mind a biztonsági mentési oszlopot');
       return;
     }
 
-    // Ensure the new column exists in all rows
+    // Új oszlop hozzáadása minden sorhoz
     let normalizedData = DataTransformer.addColumnToTable(
       $dataStore.originalData,
       'Régi cikkszám',
@@ -45,7 +45,7 @@
       };
     });
 
-    // Update columns list if needed
+    // Oszloplista frissítése
     let columns = $dataStore.columns;
     if (!columns.includes('Régi cikkszám')) {
       columns = [...columns, 'Régi cikkszám'];
@@ -63,7 +63,7 @@
 </script>
 
 <svelte:head>
-  <title>SKU Normalizer | Data Utilities Suite</title>
+  <title>Cikkszám Normalizáló | Adateszköz Készlet</title>
 </svelte:head>
 
 <div class="d-flex flex-column min-vh-100">
@@ -74,10 +74,10 @@
       <div class="mb-4 text-center">
         <h2 class="fw-bold mb-2">
           <i class="bi bi-upc-scan text-primary me-2"></i>
-          SKU Normalizer
+          Cikkszám Normalizáló
         </h2>
         <p class="text-muted mb-0">
-          Upload your CSV/TSV file, normalize SKU columns, and export the result.
+          Töltsön fel CSV/TSV fájlt, normalizálja a cikkszám oszlopokat, és exportálja az eredményt.
         </p>
       </div>
 
@@ -94,14 +94,14 @@
               <div class="card-body">
                 <h5 class="card-title mb-3">
                   <i class="bi bi-gear me-2"></i>
-                  SKU Normalization Settings
+                  Normalizálási beállítások
                 </h5>
                 <div class="mb-3">
                   <label for="sku-column" class="form-label fw-semibold">
-                    Select SKU Column to Normalize
+                    Válassza ki a normalizálandó cikkszám oszlopot
                   </label>
                   <select id="sku-column" class="form-select" bind:value={selectedSkuColumn}>
-                    <option value="">-- Select SKU Column --</option>
+                    <option value="">-- Válasszon cikkszám oszlopot --</option>
                     {#each $dataStore.columns as column}
                       <option value={column}>{column}</option>
                     {/each}
@@ -109,10 +109,10 @@
                 </div>
                 <div class="mb-3">
                   <label for="backup-column" class="form-label fw-semibold">
-                    Select Column to Store Original SKU
+                    Válassza ki az eredeti cikkszám tárolására szolgáló oszlopot
                   </label>
                   <select id="backup-column" class="form-select" bind:value={selectedBackupColumn}>
-                    <option value="">-- Select Backup Column --</option>
+                    <option value="">-- Válasszon biztonsági mentési oszlopot --</option>
                     {#each $dataStore.columns as column}
                       <option value={column}>{column}</option>
                     {/each}
@@ -126,12 +126,12 @@
                     on:click={executeNormalization}
                   >
                     <i class="bi bi-magic me-1"></i>
-                    Execute Normalization
+                    Normalizálás végrehajtása
                   </button>
                   {#if isNormalized}
                     <button type="button" class="btn btn-secondary" on:click={resetNormalization}>
                       <i class="bi bi-arrow-counterclockwise me-1"></i>
-                      Reset to Original
+                      Visszaállítás eredeti állapotra
                     </button>
                   {/if}
                 </div>
@@ -140,14 +140,14 @@
             {#if isNormalized}
               <div class="alert alert-success d-flex align-items-center mb-4" role="alert">
                 <i class="bi bi-check-circle-fill me-2"></i>
-                Normalization completed! SKU column "<strong>{selectedSkuColumn}</strong>" has been
-                normalized.
+                Normalizálás kész! A(z) "<strong>{selectedSkuColumn}</strong>" oszlop normalizálva
+                lett.
               </div>
             {/if}
             <FileExporter
               data={isNormalized ? $dataStore.transformedData : $dataStore.originalData}
-              filename="normalized_sku.csv"
-              label={isNormalized ? 'Export Normalized Data' : 'Export Original Data'}
+              filename="normalizalt_cikkszamok.csv"
+              label={isNormalized ? 'Normalizált adatok exportálása' : 'Eredeti adatok exportálása'}
             />
           </div>
         </div>

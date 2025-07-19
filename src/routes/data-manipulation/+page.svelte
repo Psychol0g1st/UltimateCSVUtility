@@ -51,7 +51,7 @@
 </script>
 
 <svelte:head>
-  <title>Data Manipulation | Data Utilities Suite</title>
+  <title>Adatmanipuláció | Adateszköz Készlet</title>
 </svelte:head>
 
 <div class="d-flex flex-column min-vh-100">
@@ -62,10 +62,10 @@
       <div class="mb-4 text-center">
         <h2 class="fw-bold mb-2">
           <i class="bi bi-gear-fill text-primary me-2"></i>
-          Data Manipulation
+          Adatmanipuláció
         </h2>
         <p class="text-muted mb-0">
-          Upload your CSV/TSV file, apply data transformations, and export the result.
+          Töltsön fel CSV/TSV fájlt, alkalmazzon átalakításokat, és exportálja az eredményt.
         </p>
       </div>
 
@@ -82,33 +82,33 @@
             <div class="card border-0 shadow-sm">
               <div class="card-body">
                 <h6 class="card-title text-muted mb-3">
-                  <i class="bi bi-bar-chart me-2"></i>Data Overview
+                  <i class="bi bi-bar-chart me-2"></i>Adatáttekintés
                 </h6>
                 <div class="row text-center">
                   <div class="col-4">
                     <div class="fw-bold text-primary fs-4">{originalRowCount}</div>
-                    <small class="text-muted">Original Rows</small>
+                    <small class="text-muted">Eredeti sorok</small>
                   </div>
                   <div class="col-4">
                     <div class="fw-bold text-success fs-4">{$dataStore.columns.length}</div>
-                    <small class="text-muted">Columns</small>
+                    <small class="text-muted">Oszlopok</small>
                   </div>
                   <div class="col-4">
                     <div class="fw-bold {hasManipulation ? 'text-info' : 'text-muted'} fs-4">
                       {hasManipulation ? manipulatedRowCount : originalRowCount}
                     </div>
-                    <small class="text-muted">Current Rows</small>
+                    <small class="text-muted">Jelenlegi sorok</small>
                   </div>
                 </div>
                 {#if hasManipulation}
                   <div class="mt-3 text-center">
                     {#if rowDifference !== 0}
                       <span class="badge {rowDifference > 0 ? 'bg-warning' : 'bg-info'} fs-6">
-                        {rowDifference > 0 ? '-' : '+'}{Math.abs(rowDifference)} rows
+                        {rowDifference > 0 ? '-' : '+'}{Math.abs(rowDifference)} sor
                       </span>
                     {:else if modifiedRowCount > 0}
                       <span class="badge bg-primary fs-6">
-                        {modifiedRowCount} row{modifiedRowCount === 1 ? '' : 's'} modified
+                        {modifiedRowCount} módosított sor
                       </span>
                     {/if}
                   </div>
@@ -124,7 +124,7 @@
             <div class="card border-0 shadow-sm">
               <div class="card-header bg-light border-0">
                 <h6 class="card-title mb-0">
-                  <i class="bi bi-tools me-2"></i>Data Transformations
+                  <i class="bi bi-tools me-2"></i>Adatátalakítások
                 </h6>
               </div>
               <div class="card-body">
@@ -137,7 +137,7 @@
                   <div class="mt-3 pt-3 border-top">
                     <button class="btn btn-outline-secondary btn-sm" onclick={resetManipulation}>
                       <i class="bi bi-arrow-counterclockwise me-1"></i>
-                      Reset to Original
+                      Visszaállítás eredeti állapotra
                     </button>
                   </div>
                 {/if}
@@ -153,17 +153,17 @@
               <div class="card border-0 shadow-sm border-success">
                 <div class="card-header bg-success bg-opacity-10 border-0">
                   <h6 class="card-title mb-0 text-success">
-                    <i class="bi bi-check-circle me-2"></i>Ready to Export
+                    <i class="bi bi-check-circle me-2"></i>Exportálásra kész
                   </h6>
                 </div>
                 <div class="card-body">
                   <p class="text-muted mb-3">
-                    Your data has been successfully transformed. Export the results below.
+                    Az adatok sikeresen át lettek alakítva. Exportálja az eredményt alább.
                   </p>
                   <FileExporter
                     data={manipulatedData}
-                    filename="manipulated_data.csv"
-                    label="Export Manipulated Data"
+                    filename="modositott_adatok.csv"
+                    label="Módosított adatok exportálása"
                   />
                 </div>
               </div>
@@ -175,14 +175,14 @@
               <div class="card border-0 shadow-sm border-secondary">
                 <div class="card-body text-center">
                   <i class="bi bi-info-circle text-muted fs-1 mb-3"></i>
-                  <h6 class="text-muted">No transformations applied yet</h6>
+                  <h6 class="text-muted">Még nincsenek átalakítások</h6>
                   <p class="text-muted small mb-3">
-                    Select a manipulation above to transform your data, or export the original data.
+                    Válasszon átalakítást fent, vagy exportálja az eredeti adatokat.
                   </p>
                   <FileExporter
                     data={$dataStore.originalData}
-                    filename="original_data.csv"
-                    label="Export Original Data"
+                    filename="eredeti_adatok.csv"
+                    label="Eredeti adatok exportálása"
                   />
                 </div>
               </div>
@@ -197,9 +197,9 @@
               <div class="card border-0 shadow-sm">
                 <div class="card-header bg-light border-0">
                   <h6 class="card-title mb-0">
-                    <i class="bi bi-table me-2"></i>Data Preview
+                    <i class="bi bi-table me-2"></i>Adatelőnézet
                     <span class="badge bg-secondary ms-2">
-                      {hasManipulation ? 'Transformed' : 'Original'}
+                      {hasManipulation ? 'Átalakított' : 'Eredeti'}
                     </span>
                   </h6>
                 </div>
@@ -227,9 +227,9 @@
                     </table>
                     {#if (hasManipulation ? manipulatedData : $dataStore.originalData).length > 5}
                       <small class="text-muted">
-                        Showing first 5 rows of {hasManipulation
+                        Az első 5 sor megjelenítve {hasManipulation
                           ? manipulatedData.length
-                          : $dataStore.originalData.length} total rows
+                          : $dataStore.originalData.length} összes sorból
                       </small>
                     {/if}
                   </div>

@@ -5,7 +5,6 @@
 </script>
 
 <label>
-  Delimiter:
   <select
     bind:value={delimiter}
     class="form-select form-select-sm"

@@ -1,6 +1,10 @@
+<script>
+  import { base } from '$app/paths';
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/">
+    <a class="navbar-brand fw-bold" href={base}>
       <i class="bi bi-table me-2"></i>
       Adatkezelő Eszközkészlet
     </a>
@@ -15,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/"> Főoldal </a>
+          <a class="nav-link" href={base}> Főoldal </a>
         </li>
       </ul>
     </div>

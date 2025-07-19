@@ -1,7 +1,7 @@
 <script lang="ts">
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
-
+  import { base } from '$app/paths';
   interface Utility {
     name: string;
     path: string;
@@ -22,7 +22,7 @@
         'CSV/TSV fájlok feltöltése, oszlopok átnevezése és exportálás az új oszlopnevekkel.'
     },
     {
-      name: 'SKU Normalizáló',
+      name: 'Cikkszám normalizáló',
       path: '/sku-normalizer',
       description:
         'CSV/TSV fájlok feltöltése, SKU oszlopok normalizálása egységes formátumra és az eredmény exportálása.'
@@ -34,10 +34,10 @@
         'Eszközkészlet táblázatos adatok kezelésére, üres sorok törlésére, oszlopok szűrésére és egyéb műveletekre.'
     },
     {
-      name: 'Oszlopfelosztó',
+      name: 'Oszlop szétbontása',
       path: '/column-splitter',
       description:
-        'CSV/TSV fájlok feltöltése, oszlop felosztása megadott elválasztó karakter alapján és az eredmény exportálása.'
+        'CSV/TSV fájlok feltöltése, oszlop felosztása megadott elválasztó karakter alapján több oszlopba és az eredmény exportálása.'
     }
   ];
 </script>
@@ -66,7 +66,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{util.name}</h5>
             <p class="card-text flex-grow-1">{util.description}</p>
-            <a class="btn btn-primary mt-2" href={util.path}>
+            <a class="btn btn-primary mt-2" href={`${base}${util.path}`}>
               <i class="bi bi-box-arrow-up-right me-1"></i>
               Megnyitás
             </a>
