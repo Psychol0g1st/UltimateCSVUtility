@@ -8,9 +8,6 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		paths: {
-			base: '/UltimateCSVUtility/build'
-		},
 		adapter: adapter({
 			fallback: 'index.html'
 		}),
