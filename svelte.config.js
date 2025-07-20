@@ -9,14 +9,12 @@ const config = {
 
 	kit: {
 		paths: {
-			base: '/UltimateCSVUtility'
+			base: process.argv.includes("dev") ? "" : '/UltimateCSVUtility',
 		},
 		adapter: adapter({
-			fallback: 'index.html'
+			pages: "docs", assets: "docs", fallback: "404.html"
 		}),
-		prerender: {
-			handleHttpError: 'warn' // 👈 tells SvelteKit to log instead of crash
-		}
+		appDir: 'scripts'
 	},
 
 	// Add this section to enable custom elements
